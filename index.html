@@ -26,7 +26,7 @@ function check(){
 
   for(const link of linkArray){
       fetch(link).then((res)=>{
-          if(res.ok&&res.redirected==false){
+          if(res.ok&&res.text.toString().includes(`<a href="https://www.fcps.edu/node/31303">review our FCPS content filtering policies</a>`==false)){
               workingLinkArray.push(link);
               linkStatusArray.push({"link":link,"status":res.status});
           }else{
