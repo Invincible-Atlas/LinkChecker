@@ -33,7 +33,7 @@ function check(){
               linkStatusArray.push({"link":link,"status":res.status});
           }
       }).catch((err)=>{
-          errors = errors + "<br>" + err.stack;
+          errors = errors + "<br>"+ link + err.stack;
       })
   }
 }
