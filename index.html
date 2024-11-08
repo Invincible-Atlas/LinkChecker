@@ -1,1 +1,42 @@
-i
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <input id="input" type="text"><button id="button" onclick="check()">Check Links</button>
+  <p id="output">Placeholder</p>
+  <script>
+
+let linkString = "/echo/html/,https://jsfiddle.net,https://youtube.com";
+let linkArray = linkString.split(",");
+let workingLinkArray = [];
+let linkStatusArray = [];
+let errors = "";
+  setInterval(()=>{
+      output.innerHTML = workingLinkArray.toString().replaceAll(",","<br>")+"<br><br>"+JSON.stringify(linkStatusArray).replaceAll(",","<br>")+"<br><br>"+errors;
+  })
+const output = document.getElementById("output");
+function check(){
+  linkString = document.getElementById("input").value;
+	linkArray = linkString.split(",");
+
+
+  for(const link of linkArray){
+      fetch(link).then((res)=>{
+          if(res.ok){
+              workingLinkArray.push(link);
+              linkStatusArray.push({"link":link,"status":res.status});
+          }else{
+              linkStatusArray.push({"link":link,"status":res.status});
+          }
+      }).catch((err)=>{
+          errors = errors + "<br>" + err.stack;
+      })
+  }
+}
+  </script>
+</body>
+</html>
