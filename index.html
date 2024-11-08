@@ -20,7 +20,7 @@ let errors = "";
   })
 const output = document.getElementById("output");
 function check(){
-  linkString = document.getElementById("input").value;
+  linkString = document.getElementById("input").value.replaceAll("https://","");
 	linkArray = linkString.split(",");
 
 
