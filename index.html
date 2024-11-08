@@ -32,7 +32,8 @@ function check(){
           }else{
               linkStatusArray.push({"link":link,"status":res.status});
           }
-      }).catch((err)=>{
+          return(res.text);
+      }).then((text)=>{console.log(text)}).catch((err)=>{
           errors = errors + "<br>"+ link + err.stack;
       })
   }
