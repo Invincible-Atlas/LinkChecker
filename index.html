@@ -26,7 +26,7 @@ function check(){
 
   for(const link of linkArray){
       fetch(link).then((res)=>{
-          if(res.ok){
+          if(res.ok&&res.redirected==false){
               workingLinkArray.push(link);
               linkStatusArray.push({"link":link,"status":res.status});
           }else{
